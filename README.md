@@ -101,7 +101,7 @@ cd <your-fork-repo>
 To build the blog into the `dist/` directory, run:
 
 ```bash
-deno run -A jsr:@simonneutert/quickblog build
+deno run -A jsr:@simonneutert/quickblog@0.0.2 build
 ```
 
 ## Features
@@ -116,14 +116,14 @@ Create a new blog post with TOML as front matter:
 
 ```bash
 # default is toml front matter for the markdown
-deno run -A jsr:@simonneutert/quickblog new "my new blog post"
+deno run -A jsr:@simonneutert/quickblog@0.0.2 new "my new blog post"
 ```
 
 You can use YAML, of course, too:
 
 ```bash
 # Create a post with YAML frontmatter
-deno run -A jsr:@simonneutert/quickblog new "My Post" --yaml
+deno run -A jsr:@simonneutert/quickblog@0.0.2 new "My Post" --yaml
 ```
 
 ## Template Helpers
@@ -165,7 +165,11 @@ any breaking changes or updates.
 4. Run locally:
 
 ```bash
-deno run -A jsr:@simonneutert/quickblog build
+# OPTIONAL: clean deno cache to make sure you get the latest version of the engine
+deno clean
+
+# build the blog into the dist/ directory
+deno run -A jsr:@simonneutert/quickblog@0.0.2 build
 # then serve to check the result on http://localhost:8000
 deno run --allow-net --allow-read jsr:@std/http/file-server dist/
 ```

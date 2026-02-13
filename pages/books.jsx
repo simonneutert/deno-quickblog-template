@@ -17,6 +17,11 @@ import React from "npm:@preact/compat";
 import { render } from "jsr:@deno/gfm";
 import data from "./books.json" with { type: "json" };
 
+// set a title in the rendered HTML
+export const config = {
+  title: "Some Books from JSON rendered with JSX"
+};
+
 // this is a helper function that accepts the books and formats them in markdown
 function formatCheckboxText(books) {
   return books.map((book) => {

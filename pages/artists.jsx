@@ -24,6 +24,11 @@ import { parse } from "jsr:@std/yaml";
 // no parent key was used, so we can directly parse the file and get the list of artists as an array.
 const artists = parse(Deno.readTextFileSync("./pages/artists.yaml"));
 
+// set a title in the rendered HTML
+export const config = {
+  title: "Three Artists with Search from a YAML file as JSX"
+};
+
 // the Artists component renders the list of artists with search functionality
 export default function Artists() {
   return (

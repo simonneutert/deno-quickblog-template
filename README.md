@@ -1,19 +1,14 @@
 # Deno QuickBlog Template
 
 A simple blog generator powered by Deno,
-[GitHub Flavored Markdown (GFM)](https://github.github.com/gfm/) and a little [preact](https://preactjs.com/).\
+[GitHub Flavored Markdown (GFM)](https://github.github.com/gfm/) and a little
+[preact](https://preactjs.com/).\
 It's an all-in-one TypeScript static-site-generator for your next blog.
 
-The logic is kept and tested in a separate repository [deno-quickblog](https://github.com/simonneutert/deno-quickblog).
+The logic is kept and tested in a separate repository
+[deno-quickblog](https://github.com/simonneutert/deno-quickblog).
 
-> [!CAUTION]
-> This project is in a public alpha stage. The engine will be pulled out into a
-> separate package in the future, and this repository will serve as a
-> demo/showcase/template for how to use it.\
-> So expect breaking changes and a lot of updates in the near future. **Most
-> likely I will drop and re-create the GitHub repository itself.**\
-> But if you want to try it out and give feedback, please do! Just make sure to
-> back up your content before pulling the latest changes.
+---
 
 ![Deno QuickBlog Template](/public/img/deno-quickblog-logo.png)
 
@@ -100,68 +95,22 @@ Fork this repository to create your own blog. Then clone your fork locally.:
 
 ```bash
 git clone <your-fork-url>
-cd deno-quickblog
+cd <your-fork-repo>
 ```
 
-Edit or create the following files and directories:
-
-- `index.md` (the index/main template for your blog)
-- `nav.md` (the navigation template for your blog)
-- `footer.md` (the footer template for your blog)
-- `pages/` (directory with your additional pages)
-- `posts/` (directory with your markdown posts)
-- `public/` (directory with your static assets like images)
-- `dist/` (empty directory where the generated files will be placed)
-
-It should look like this:
-
-```
-your-blog/
-├── index.md
-├── nav.md
-├── footer.md
-├── pages/
-├── posts/
-├── public/
-└── dist/
-```
+To build the blog into the `dist/` directory, run:
 
 ```bash
 deno run -A jsr:@simonneutert/quickblog build
 ```
 
-#### Generate lists of posts in your pages
+## Features
 
-You can generate lists of posts in your pages by using the `{{ POSTS_LIST }}` or
-`{{ POSTS_LIST(n) }}` syntax in your markdown files. The optional `n` parameter
-specifies the number of latest posts to list. If `n` is not provided, all posts
-will be listed.
+For the latest and greatest features, check the
+[deno-quickblog repository](https://github.com/simonneutert/deno-quickblog).
+Here's a quick overview of some of the features you can use in your blog:
 
-### Upgrading from older versions
-
-You should be able to pull the latest Docker image and run the same command as
-above.
-
-Git-based setups should be able to just pull the latest changes and run the same
-command as above. (Make sure to back up your posts first! A detailed upgrade
-path will be provided in future releases. But most of you should figure it out -
-just make sure the `pages/`, `posts/`, and `public/` directories are preserved
-with your content.)
-
-## Local Development
-
-1. Fork the repository.
-2. Clone your fork locally.
-3. Install Deno if you haven't already: https://deno.land/
-4. Run locally:
-
-```bash
-deno run -A jsr:@simonneutert/quickblog build
-# then serve to check the result on http://localhost:8000
-deno run --allow-net --allow-read jsr:@std/http/file-server dist/
-```
-
-### Create a new post
+## Create a new post
 
 Create a new blog post with TOML as front matter:
 
@@ -175,6 +124,50 @@ You can use YAML, of course, too:
 ```bash
 # Create a post with YAML frontmatter
 deno run -A jsr:@simonneutert/quickblog new "My Post" --yaml
+```
+
+## Template Helpers
+
+### The `{{ POSTS_LIST }}` Helper in Markdown Files
+
+You can generate lists of posts in your pages by using the `{{ POSTS_LIST }}` or
+`{{ POSTS_LIST(n) }}` syntax in your markdown files. The optional `n` parameter
+specifies the number of latest posts to list. If `n` is not provided, all posts
+will be listed.
+
+### Latest Posts with Full Content
+
+Use the {{ LATEST_POSTS }} placeholder to display the full content of the latest
+post, or {{ LATEST_POSTS(n) }} to display the latest n posts:
+
+```markdown
+# Most Recent Post
+
+{{ LATEST_POSTS }}
+
+# Render 5 of the Most Recent Posts
+
+{{ LATEST_POSTS(5) }}
+```
+
+## Upgrading from older versions
+
+The engine is in a separate repository and is versioned independently. Follow
+the Changelog in the
+[deno-quickblog repository](https://github.com/simonneutert/deno-quickblog) for
+any breaking changes or updates.
+
+## Local Development
+
+1. Fork the repository.
+2. Clone your fork locally.
+3. Install Deno if you haven't already: https://deno.land/
+4. Run locally:
+
+```bash
+deno run -A jsr:@simonneutert/quickblog build
+# then serve to check the result on http://localhost:8000
+deno run --allow-net --allow-read jsr:@std/http/file-server dist/
 ```
 
 ## Host with Docker/Podman
@@ -199,7 +192,9 @@ Then run the container:
 docker run --rm -it -p 8080:80 deno-quickblog-prod
 ```
 
-### Need another language?
+## Customization / FAQ
+
+### Need your language? (Internationalization)
 
 Pass the environment variable `DENO_QUICKBLOG_LANG` when running the container.
 For example, for Spanish:

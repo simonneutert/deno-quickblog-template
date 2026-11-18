@@ -13,7 +13,7 @@ https://docs.deno.com/runtime/reference/jsx/#using-preact-with-rendertostring
 */
 
 // deno-lint-ignore-file verbatim-module-syntax no-import-prefix no-unversioned-import
-import React from "npm:@preact/compat";
+import * as React from "jsr:@simonneutert/quickblog/compat"; // this uses the pinned @preact/compat from quickblog
 import { render } from "jsr:@deno/gfm";
 import { parse } from "jsr:@std/yaml";
 
